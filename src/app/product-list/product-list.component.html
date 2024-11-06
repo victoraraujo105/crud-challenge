@@ -1,0 +1,129 @@
+<header tuiNavigationHeader>
+  <span tuiNavigationLogo>
+    <tui-icon icon="@tui.home" />
+    <span tuiFade>Join CRUD Challenge</span>
+  </span>
+  <button
+    tuiButton
+    tuiChevron
+    tuiDropdownOpen
+    appearance="secondary-grayscale"
+    type="button"
+    [tuiDropdown]="entities"
+  >
+    <span tuiFade>Entities</span>
+<!-- TODO: traverse an array of entities -->
+    <ng-template #entities>
+      <tui-data-list size="s">
+        <button
+          tuiOption
+          type="button"
+          >
+            Products
+          <tui-icon
+            icon="@tui.check"
+            [style.font-size.em]="1"
+            [style.margin-left.rem]="0.5"
+            />
+        </button>
+        <button
+          tuiOption
+          type="button"
+          >
+            Categories
+        </button>
+      </tui-data-list>
+    </ng-template>
+  </button>
+  <hr />
+  <tui-avatar src="AI" />
+</header>
+<div [style.display]="'flex'">
+  <main tuiNavigationMain>
+    <nav
+      tuiNavigationNav
+      [style.position]="'sticky'"
+      >
+      <span tuiNavigationLogo>
+        <span tuiFade>Products</span>
+      </span>
+    </nav>
+    <!-- TODO: traverse paginated list of products, search filter -->
+    <div
+      tuiTextfieldSize="m"
+      class="filters"
+    >
+      <tui-input
+        class="input"
+        [tuiTextfieldCleaner]="true"
+        [(ngModel)]="search"
+      >
+        Search
+      </tui-input>
+    </div>
+    <table
+      tuiTable
+      [size]="'l'"
+    >
+      <caption tuiCaption>
+        <span>999 of rows</span>
+        <button
+          tuiButton
+          tuiButtonSelect
+          type="button"
+          [(ngModel)]="size"
+          appearance="flat"
+        >
+          {{ index * size + 1 }}-{{ (index + 1) * size }} rows
+          <tui-data-list-wrapper
+            *tuiTextfieldDropdown
+            [itemContent]="content"
+            [items]="items"
+          />
+        </button>
+        <tui-pagination
+          [length]="length"
+          [style.float]="'right'"
+          [(index)]="index"
+        />
+      </caption>
+      <thead>
+        <tr>
+          <th tuiTh>Name</th>
+          <th tuiTh>Description</th>
+          <th tuiTh>Price</th>
+          <th tuiTh>Category</th>
+        </tr>
+      </thead>
+      <tbody tuiTbody>
+        @for (item of items; track item.id) {
+          <tr>
+            <td tuiTd>
+              <div [tuiCell]="'l'">
+                  <span tuiTitle>{{ item.name }}</span>
+              </div>
+            </td>
+            <td tuiTd>
+              <div [tuiCell]="'l'">
+                  <span tuiFade>{{ item.description }}</span>
+              </div>
+            </td>
+            <td tuiTd>
+              <div [tuiCell]="'l'">
+                  <span>{{ item.price }}</span>
+              </div>
+            </td>
+            <td tuiTd>
+              <div [tuiCell]="'l'">
+                  <span>{{ item.category }}</span>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+
+        }
+      </tbody>
+    </table>
+  </main>
+</div>
+
