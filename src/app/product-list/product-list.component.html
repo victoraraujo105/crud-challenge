@@ -60,6 +60,16 @@
       >
         Search
       </tui-input>
+      <div
+        tuiButtonGroup
+        tuiAppearance="floating"
+        class="actions"
+      >
+        <button type="button">
+          <tui-icon icon="@tui.circle-plus" />
+          Add
+        </button>
+      </div>
     </div>
     <table
       tuiTable
@@ -93,6 +103,7 @@
           <th tuiTh>Description</th>
           <th tuiTh>Price</th>
           <th tuiTh>Category</th>
+          <th tuiTh></th>
         </tr>
       </thead>
       <tbody tuiTbody>
@@ -116,6 +127,33 @@
             <td tuiTd>
               <div [tuiCell]="'l'">
                   <span>{{ item.category }}</span>
+              </div>
+            </td>
+            <td
+                tuiTd
+                class="actions-cell"
+            >
+              <div [tuiCell]="'l'">
+                  <span tuiStatus>
+                    <button
+                      tuiIconButton
+                      type="button"
+                      appearance="action"
+                      iconStart="@tui.pencil"
+                      size="s"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      tuiIconButton
+                      type="button"
+                      appearance="action"
+                      iconStart="@tui.trash"
+                      size="xs"
+                    >
+                      Edit
+                    </button>
+                  </span>
               </div>
             </td>
           </tr>

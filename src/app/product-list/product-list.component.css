@@ -29,10 +29,19 @@
   flex: 1;
 }
 
-.columns {
-  inline-size: 10.625rem;
+.filters .actions {
+  padding: 0 1rem;
 }
 
 .match {
   background: var(--tui-service-selection-background);
+}
+
+.actions-cell {
+  inline-size: min-content;
+}
+
+.actions-cell span {
+  display: flex;
+  gap: 0.5rem;
 }
